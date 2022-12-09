@@ -5,17 +5,17 @@
 
 import express , { Request, Response } from 'express';
 import helloRouter from './HelloRouter';
-import { LogInfo } from '@/utils/logger';
+import { LogInfo } from '../utils/logger';
 
 // server instance
 let server = express();
-//router instance
 
+//router instance
 let rootRouter = express.Router();
 
 // active for requests to http://localhost:8080/api/
 rootRouter.get('/',(req:Request, res:Response) => {
-    LogInfo(' GET: http://localhost:8080')
+    LogInfo(' GET: http://localhost:8000')
     // send hello word 
     res.send('APP con express + TS + swageer + mogoose +jest + nodemon......')
  })

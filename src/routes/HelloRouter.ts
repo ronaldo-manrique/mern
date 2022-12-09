@@ -1,6 +1,6 @@
 import express , { Request, Response } from 'express';
-import { HelloController } from '@/controllers/HelloController';
-import { LogInfo } from '@/utils/logger';
+import { HelloController } from '../controllers/HelloController';
+import { LogInfo } from '../utils/logger';
 
 //Router from express
  let helloRouter = express.Router();

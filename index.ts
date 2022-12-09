@@ -1,49 +1,20 @@
-import express, {Express, Request , Response } from 'express';
 import dotenv from "dotenv";
+import server from "./src/server";
+import { LogError, LogSucccess } from "./src/utils/logger";
 
 
-// configuracion del archivo .env 
+
+// *configuracion del archivo .env 
 dotenv.config();
 
-// crear  express APP
-const app:Express = express();
 const port: string | number  = process.env.PORT || 8000;
 
-// definir la primera ruta
-app.get('/',(req:Request, res:Response) => {
-    res.send('APP con express + TS + swageer + mogoose +jest + nodemon......')
- })
-
-// definir la primera ruta
-app.get('/hello',(req:Request, res:Response) => {
-
-  if(req.query.name === ''){
-   res.json({  
-      "data": {
-        "message": "hola anonimo"
-      }
-    })
-  }else{
-   res.json({  
-      "data": {
-        "message": `Hola ${req.query.name}`
-      }
-    })
-  }
-   
+//* ejecutar el servidor
+server.listen(port,()=>{
+  LogSucccess(`[SEVER ON]: running in http://localhost:${port}/api`);
 })
 
-app.get('/data',(req:Request, res:Response) => {
-   res.status(200);
-   res.json({  
-      "data": {
-        "message": "Goodbye, world"
-      }
-    }
-    );
-})
-
-
-app.listen(port,()=>{
-    console.log(`EXPREES SERVER RUNNING AT http://localhost:${port}`)
+//* controlar ERROR EN EL SERVERR
+server.on('error',(error)=>{
+  LogError(`[SEVER OFF]:  ${error}`)
 })
